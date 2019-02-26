@@ -57,26 +57,39 @@ public class mEditCard extends AppCompatActivity {
             Toast.makeText(this, "Date is in the wrong format", Toast.LENGTH_LONG).show();
             return;
         }
-        // if MedCardId insert is successful, then insert pairs of key->value
+        // if MedCardId insert is successful, then insert pairs of key->value first row
         values = new ContentValues();
         Integer i = 0;
-        TextView eKey1 = findViewById(R.id.eKey1);
-        TextView eVal1 = findViewById(R.id.eVal1);
-        String K = eKey1.getText().toString();
-        String V = eVal1.getText().toString();
+        TextView eKey = findViewById(R.id.eKey1);
+        TextView eVal = findViewById(R.id.eVal1);
+        String K = eKey.getText().toString();
+        String V = eVal.getText().toString();
         if (K != "" && V != "") {
             values.put(MedCardDBContract.CardContent.COLUMN_MEDCARDID,MedCardId);
             values.put(MedCardDBContract.CardContent.COLUMN_KEY, K);
             values.put(MedCardDBContract.CardContent.COLUMN_VALUE, V);
             values  .put(MedCardDBContract.CardContent.COLUMN_CREATEDDATE, date);
-            try {
-                Long newRowId = database.insert(MedCardDBContract.CardContent.TABLE_NAME, null,values);
-            }
-            catch ( Exception e)
-            {
-                Toast.makeText(this, "Error", Toast.LENGTH_LONG).show();
-                return;
-            }
+        }
+        // second row
+        eKey = findViewById(R.id.eKey2);
+        eVal = findViewById(R.id.eVal2);
+        K = eKey.getText().toString();
+        V = eVal.getText().toString();
+        if (K != "" && V != "") {
+            values.put(MedCardDBContract.CardContent.COLUMN_MEDCARDID,MedCardId);
+            values.put(MedCardDBContract.CardContent.COLUMN_KEY, K);
+            values.put(MedCardDBContract.CardContent.COLUMN_VALUE, V);
+            values  .put(MedCardDBContract.CardContent.COLUMN_CREATEDDATE, date);
+        }
+
+        // write to the DB
+        try {
+            Long newRowId = database.insert(MedCardDBContract.CardContent.TABLE_NAME, null,values);
+        }
+        catch ( Exception e)
+        {
+            Toast.makeText(this, "Error", Toast.LENGTH_LONG).show();
+            return;
         }
     };
 }
