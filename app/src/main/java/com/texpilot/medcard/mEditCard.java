@@ -78,12 +78,11 @@ public class mEditCard extends AppCompatActivity {
             date = calendar.getTimeInMillis();
 
             values.put(MedCardDBContract.MedCard.COLUMN_CREATEDDATE, date);
-            long newRowId = database.insert(MedCardDBContract.MedCard.TABLE_NAME, null, values);
-            MedCardId = newRowId;
-        }
+            MedCardId = database.insert(MedCardDBContract.MedCard.TABLE_NAME, null, values);
+         }
         catch (Exception e) {
 
-            Toast.makeText(this, "Date is in the wrong format", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Error generating MedCardId", Toast.LENGTH_LONG).show();
             return;
         }
 
@@ -155,7 +154,7 @@ public class mEditCard extends AppCompatActivity {
         }
         catch ( Exception e)
         {
-            Toast.makeText(this, "Error", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Error card content insert", Toast.LENGTH_LONG).show();
             return;
         }
     };
