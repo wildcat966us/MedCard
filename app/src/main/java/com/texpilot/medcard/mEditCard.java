@@ -25,13 +25,52 @@ public class mEditCard extends AppCompatActivity {
         btnNew.setOnClickListener(SavetoDBListener);
     }
 
-    // open About activity
+    // save to DB listener
     private View.OnClickListener SavetoDBListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            SavetoDB();
+            if (!ValidateEntryFields())
+            {
+                Toast.makeText(view.getContext(), "No values to enter", Toast.LENGTH_LONG).show();
+                return;
+            }
+            //SavetoDB();
         }
     };
+
+    // validate entry fields
+    private boolean ValidateEntryFields() {
+        boolean result = false;
+        TextView eKey1 = findViewById(R.id.eKey1);
+        TextView eVal1 = findViewById(R.id.eVal1);
+        String K1 = eKey1.getText().toString();
+        String V1 = eVal1.getText().toString();
+
+        TextView eKey2 = findViewById(R.id.eKey2);
+        TextView eVal2 = findViewById(R.id.eVal2);
+        String K2 = eKey2.getText().toString();
+        String V2 = eVal2.getText().toString();
+
+        TextView eKey3 = findViewById(R.id.eKey3);
+        TextView eVal3 = findViewById(R.id.eVal3);
+        String K3 = eKey3.getText().toString();
+        String V3 = eVal3.getText().toString();
+
+        TextView eKey4 = findViewById(R.id.eKey4);
+        TextView eVal4 = findViewById(R.id.eVal4);
+        String K4 = eKey4.getText().toString();
+        String V4 = eVal4.getText().toString();
+
+        TextView eKey5 = findViewById(R.id.eKey5);
+        TextView eVal5 = findViewById(R.id.eVal5);
+        String K5 = eKey5.getText().toString();
+        String V5 = eVal5.getText().toString();
+        if (!K1.isEmpty() || !K2.isEmpty() || !K3.isEmpty() || !K4.isEmpty() || !K5.isEmpty()) {
+            result = true;
+        }
+        return result;
+    };
+
 
     private void SavetoDB(){
         SQLiteDatabase database = new MedCardDBSQLiteHelper(this).getWritableDatabase();
@@ -81,6 +120,7 @@ public class mEditCard extends AppCompatActivity {
             values.put(MedCardDBContract.CardContent.COLUMN_VALUE, V);
             values  .put(MedCardDBContract.CardContent.COLUMN_CREATEDDATE, date);
         }
+
 
         // write to the DB
         try {
