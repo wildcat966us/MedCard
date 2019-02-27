@@ -34,7 +34,7 @@ public class mEditCard extends AppCompatActivity {
                 Toast.makeText(view.getContext(), "No values to enter", Toast.LENGTH_LONG).show();
                 return;
             }
-            //SavetoDB();
+            SavetoDB();
         }
     };
 
