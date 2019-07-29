@@ -24,7 +24,6 @@ public class MedCardWidget extends AppWidgetProvider {
         // Instruct the widget manager to update the widget
         appWidgetManager.updateAppWidget(appWidgetId, views);
 
-
     }
 
     @Override
